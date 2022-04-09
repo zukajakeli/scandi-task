@@ -8,11 +8,15 @@ export class Stepper extends React.Component {
       (step) => step[0] === checkoutStep
     );
 
+    const checkIfLastItem = (index) => {
+      return index + 1 === stepsArray.length;
+    };
+
     return (
       <div block="Checkout" elem="Stepper">
         {stepsArray &&
           stepsArray.map((item, index) => {
-            if (index + 1 !== stepsArray.length)
+            if (!checkIfLastItem(index))
               return (
                 <div
                   className={
@@ -34,7 +38,7 @@ export class Stepper extends React.Component {
         <div className="last-step">
           <span
             className={
-              indexOfStep + 1 === stepsArray.length
+              checkIfLastItem(indexOfStep)
                 ? "last-step-bar--active"
                 : "last-step-bar"
             }
